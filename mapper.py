@@ -46,4 +46,4 @@ with open('cards_after_mapper.csv', 'w', encoding='UTF-8') as f_mapper:
                 value = VALUES[value]
 
             if value.isdigit() and int(value) >= 6:
-                f_mapper.write(f'{suit}, {value}, 1')
+                f_mapper.write(f'{suit}, {value}, 1\n')
