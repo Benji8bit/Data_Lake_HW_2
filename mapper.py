@@ -1,49 +1,26 @@
-### Mapper for cards.csv and requests.csv ###
+### Mapper for keywords.csv: split for keywords.csv and split for every keyword are here ###
 
 with open('keywords.csv', encoding='UTF-8') as f:
     for i, line in enumerate(f):
-        suit, value = line.strip().split(',')
-        print(suit, value)
+        keywords, shows = line.strip().split(',')
 
-        if i > 5:
+        print(keywords, shows)
+        if i > 12:
             break
 
-SUITES = {
-    'червы': 'H',
-    'пики': 'S',
-    'бубны': 'D',
-    'трефы': 'C',
-}
-
-VALUES = {
-    'валет': 'J',
-    'дама': 'Q',
-    'король': 'K',
-    'туз': 'A',
-}
-
-with open('cards.csv', encoding='UTF-8') as f:
-    for i, line in enumerate(f):
-        suit, value = line.strip().split(',')
-
-        suit = SUITES[suit]
-
-        if value in VALUES:
-            value = VALUES[value]
-
-        print(f'{suit}, {value}, 1')
-        if i > 5:
-            break
-
-with open('cards_after_mapper.csv', 'w', encoding='UTF-8') as f_mapper:
-    with open('cards.csv', encoding='UTF-8') as f:
+with open('keywords_after_mapper.csv', 'w', encoding='UTF-8') as f_mapper:
+    with open('keywords.csv', encoding='UTF-8') as f:
         for i, line in enumerate(f):
-            suit, value = line.strip().split(',')
+            keywords, shows = line.strip().split(',')
+            for word in keywords.split():
+                if word == 'keyword':
+                    continue
+                f_mapper.write(f'{word}, 1\n')
 
-            suit = SUITES[suit]
+with open('keywords_after_mapper.csv', 'r', encoding='UTF-8') as f:
+    for i, line in enumerate(f):
+        keyword, counter = line.strip().split(',')
 
-            if value in VALUES:
-                value = VALUES[value]
-
-            if value.isdigit() and int(value) >= 6:
-                f_mapper.write(f'{suit}, {value}, 1\n')
+        print(keyword, counter)
+        if i > 12:
+            break
