@@ -1,3 +1,3 @@
 ### Shuffle step for mapreduce ###
 
-cat cards_after_mapper.csv | sort > cards_sorted.csv
+cat keywords_after_mapper.csv | sort > keywords_sorted.csv
