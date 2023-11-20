@@ -1,31 +1,31 @@
 ### Reduce step for mapreduce ###
+#
+# with open('keywords_sorted.csv', encoding='UTF-8') as f:
+#     for i, line in enumerate(f):
+#         keyword, one = line.strip().split(',')
+#         print(keyword, one)
+#
+#         if i > 8:
+#             break
 
-with open('cards_sorted.csv', encoding='UTF-16') as f:
+previous_keyword = None
+keyword_count = 0
+
+with open('keywords_sorted.csv', encoding='UTF-8') as f:
     for i, line in enumerate(f):
-        suit, value, one = line.strip().split(',')
-        print(suit, value, one)
-
-        if i > 8:
-            break
-
-previous_suit = None
-suit_count = 0
-
-with open('cards_sorted.csv', encoding='UTF-16') as f:
-    for i, line in enumerate(f):
-        suit, value, one = line.strip().split(',')
+        keyword, one = line.strip().split(',')
         one = int(one)
 
-        if previous_suit:
-            if previous_suit == suit:
-                suit_count += one
+        if previous_keyword:
+            if previous_keyword == keyword:
+                keyword_count += one
             else:
-                print(previous_suit, suit_count)
-                suit_count = one
-                previous_suit = suit
+                print(previous_keyword, keyword_count)
+                keyword_count = one
+                previous_keyword = keyword
 
         else:
-            previous_suit = suit
-            suit_count = one
+            previous_keyword = keyword
+            keyword_count = one
 
-print(previous_suit, suit_count)
+print(previous_keyword, keyword_count)
