@@ -1,6 +1,6 @@
 ### Mapper for cards.csv and requests.csv ###
 
-with open('keywords.csv', encoding='UTF-8') as f:
+with open('cards.csv', encoding='UTF-8') as f:
     for i, line in enumerate(f):
         suit, value = line.strip().split(',')
         print(suit, value)
